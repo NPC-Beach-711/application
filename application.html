@@ -1,562 +1,483 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Apply – National Petroleum Council</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Apply – National Petroleum Council</title>
+    <!-- Use your existing site CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- Small add-ons so inputs look professional without touching style.css -->
+    <style>
+      .app-progress {
+        margin-bottom: 1.25rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--npc-border, #e5e7eb)
+      }
 
-  <!-- Use your existing site CSS -->
-  <link rel="stylesheet" href="style.css" />
+      .app-progress__track {
+        height: 8px;
+        border-radius: 999px;
+        background: #e5e7eb;
+        overflow: hidden
+      }
 
-  <!-- Small add-ons so inputs look professional without touching style.css -->
-  <style>
-    .app-progress{margin-bottom:1.25rem;padding-bottom:1rem;border-bottom:1px solid var(--npc-border, #e5e7eb)}
-    .app-progress__track{height:8px;border-radius:999px;background:#e5e7eb;overflow:hidden}
-    .app-progress__bar{height:100%;width:20%;background:var(--npc-navy, #0b2b5b)}
-    .app-progress__text{margin:.65rem 0 0;color:#4b5563;font-size:.95rem}
+      .app-progress__bar {
+        height: 100%;
+        width: 20%;
+        background: var(--npc-navy, #0b2b5b)
+      }
 
-    .app-step h2{margin-top:.25rem}
-    .app-grid{display:grid;grid-template-columns:1fr;gap:1rem}
-    @media (min-width: 860px){ .app-grid.two{grid-template-columns:1fr 1fr} }
+      .app-progress__text {
+        margin: .65rem 0 0;
+        color: #4b5563;
+        font-size: .95rem
+      }
 
-    .app-field label{display:block;font-weight:600;margin-bottom:.35rem}
-    .app-field input[type="text"],
-    .app-field input[type="email"],
-    .app-field input[type="tel"],
-    .app-field input[type="url"],
-    .app-field input[type="date"],
-    .app-field input[type="file"],
-    .app-field select,
-    .app-field textarea{
-      width:100%;
-      padding:.65rem .9rem;
-      border-radius:10px;
-      border:1px solid #d1d5db;
-      background:#f9fafb;
-      font:inherit;
-      font-size:.95rem;
-    }
-    .app-field textarea{resize:vertical;min-height:120px}
-    .app-field input:focus,.app-field select:focus,.app-field textarea:focus{
-      outline:none;border-color:var(--npc-navy, #0b2b5b);box-shadow:0 0 0 1px var(--npc-navy, #0b2b5b)
-    }
-    .app-hint{display:block;color:#6b7280;margin-top:.35rem;font-size:.9rem}
+      .app-step h2 {
+        margin-top: .25rem
+      }
 
-    .app-actions{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.25rem}
-    .btn[disabled]{opacity:.55;cursor:not-allowed}
+      .app-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem
+      }
 
-    .repeatable-header{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-top:.5rem}
-    .repeatable-header p{margin:.25rem 0 0;color:#4b5563}
-    .repeatable-list{display:flex;flex-direction:column;gap:1rem;margin-top:1rem}
+      @media (min-width: 860px) {
+        .app-grid.two {
+          grid-template-columns: 1fr 1fr
+        }
+      }
 
-    .repeat-card{
-      border:1px solid var(--npc-border, #e5e7eb);
-      border-radius:14px;
-      padding:1rem;
-      background:#fff;
-    }
-    .repeat-card__top{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:.75rem}
-    .repeat-card__title{margin:0;font-weight:700}
-    .repeat-card__meta{margin:0;color:#6b7280;font-size:.9rem}
+      .app-field label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: .35rem
+      }
 
-    .checkline{display:flex;gap:.6rem;align-items:flex-start}
-    .checkline input{transform:translateY(2px)}
-    .app-status{margin-top:1rem}
-    .pill{
-      display:inline-flex;align-items:center;gap:.4rem;
-      padding:.15rem .55rem;border-radius:999px;border:1px solid #e5e7eb;
-      background:#f9fafb;color:#4b5563;font-size:.85rem
-    }
-  </style>
-</head>
+      .app-field input[type="text"],
+      .app-field input[type="email"],
+      .app-field input[type="tel"],
+      .app-field input[type="url"],
+      .app-field input[type="date"],
+      .app-field input[type="file"],
+      .app-field select,
+      .app-field textarea {
+        width: 100%;
+        padding: .65rem .9rem;
+        border-radius: 10px;
+        border: 1px solid #d1d5db;
+        background: #f9fafb;
+        font: inherit;
+        font-size: .95rem;
+      }
 
-<body id="top">
-  <div id="site-header"></div>
-  <div id="site-announcement"></div>
+      .app-field textarea {
+        resize: vertical;
+        min-height: 120px
+      }
 
-  <section class="hero hero--small">
-    <div class="container">
-      <div class="hero-inner">
-        <div class="hero-left">
-          <h1>Application</h1>
-          <p>Complete the steps below to submit your application.</p>
+      .app-field input:focus,
+      .app-field select:focus,
+      .app-field textarea:focus {
+        outline: none;
+        border-color: var(--npc-navy, #0b2b5b);
+        box-shadow: 0 0 0 1px var(--npc-navy, #0b2b5b)
+      }
+
+      .app-hint {
+        display: block;
+        color: #6b7280;
+        margin-top: .35rem;
+        font-size: .9rem
+      }
+
+      .app-actions {
+        display: flex;
+        gap: .75rem;
+        flex-wrap: wrap;
+        margin-top: 1.25rem
+      }
+
+      .btn[disabled] {
+        opacity: .55;
+        cursor: not-allowed
+      }
+
+      .repeatable-header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-top: .5rem
+      }
+
+      .repeatable-header p {
+        margin: .25rem 0 0;
+        color: #4b5563
+      }
+
+      .repeatable-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 1rem
+      }
+
+      .repeat-card {
+        border: 1px solid var(--npc-border, #e5e7eb);
+        border-radius: 14px;
+        padding: 1rem;
+        background: #fff;
+      }
+
+      .repeat-card__top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: .75rem
+      }
+
+      .repeat-card__title {
+        margin: 0;
+        font-weight: 700
+      }
+
+      .repeat-card__meta {
+        margin: 0;
+        color: #6b7280;
+        font-size: .9rem
+      }
+
+      .checkline {
+        display: flex;
+        gap: .6rem;
+        align-items: flex-start
+      }
+
+      .checkline input {
+        transform: translateY(2px)
+      }
+
+      .app-status {
+        margin-top: 1rem
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: .4rem;
+        padding: .15rem .55rem;
+        border-radius: 999px;
+        border: 1px solid #e5e7eb;
+        background: #f9fafb;
+        color: #4b5563;
+        font-size: .85rem
+      }
+    </style>
+  </head>
+  <body id="top">
+    <div id="site-header"></div>
+    <div id="site-announcement"></div>
+    <section class="hero hero--small">
+      <div class="container">
+        <div class="hero-inner">
+          <div class="hero-left">
+            <h1>Application</h1>
+            <p>Complete the steps below to submit your application.</p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <main>
-    <section class="legal-section">
-      <div class="container">
-        <article class="legal-content">
-
-          <div class="app-progress" aria-label="Application progress">
-            <div class="app-progress__track" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-              <div class="app-progress__bar" id="progressBar"></div>
+    </section>
+    <main>
+      <section class="legal-section">
+        <div class="container">
+          <article class="legal-content">
+            <div class="app-progress" aria-label="Application progress">
+              <div class="app-progress__track" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                <div class="app-progress__bar" id="progressBar"></div>
+              </div>
+              <p class="app-progress__text">
+                <strong>Step <span id="stepNum">1</span>
+                </strong> of <span id="stepTotal">5</span>
+                <span class="pill" id="stepLabel" style="margin-left:.5rem;">Personal</span>
+              </p>
             </div>
-            <p class="app-progress__text">
-              <strong>Step <span id="stepNum">1</span></strong> of <span id="stepTotal">5</span>
-              <span class="pill" id="stepLabel" style="margin-left:.5rem;">Personal</span>
-            </p>
-          </div>
-
-          <form id="jobAppForm" novalidate>
-            <!-- STEP 1: Personal -->
-            <section class="app-step" data-step="1">
-              <h2>Personal Information</h2>
-              <div class="app-grid two">
-                <div class="app-field">
-                  <label for="firstName">First name</label>
-                  <input id="firstName" name="firstName" type="text" required autocomplete="given-name" />
-                </div>
-                <div class="app-field">
-                  <label for="lastName">Last name</label>
-                  <input id="lastName" name="lastName" type="text" required autocomplete="family-name" />
-                </div>
-              </div>
-
-              <div class="app-grid two">
-                <div class="app-field">
-                  <label for="preferredName">Preferred name <span class="app-hint" style="display:inline;color:#6b7280;font-weight:400;">(optional)</span></label>
-                  <input id="preferredName" name="preferredName" type="text" />
-                </div>
-                <div class="app-field">
-                  <label for="email">Email</label>
-                  <input id="email" name="email" type="email" required autocomplete="email" />
-                </div>
-              </div>
-
-              <div class="app-grid two">
-                <div class="app-field">
-                  <label for="phone">Phone <span class="app-hint" style="display:inline;color:#6b7280;font-weight:400;">(optional)</span></label>
-                  <input id="phone" name="phone" type="tel" autocomplete="tel" />
-                </div>
-                <div class="app-field">
-                  <label for="linkedin">LinkedIn <span class="app-hint" style="display:inline;color:#6b7280;font-weight:400;">(optional)</span></label>
-                  <input id="linkedin" name="linkedin" type="url" placeholder="https://linkedin.com/in/..." />
-                </div>
-              </div>
-
-              <div class="app-grid two">
-                <div class="app-field">
-                  <label for="city">City</label>
-                  <input id="city" name="city" type="text" required autocomplete="address-level2" />
-                </div>
-                <div class="app-field">
-                  <label for="state">State / Province</label>
-                  <input id="state" name="state" type="text" required autocomplete="address-level1" />
-                </div>
-              </div>
-
-              <div class="app-grid two">
-                <div class="app-field">
-                  <label for="country">Country</label>
-                  <input id="country" name="country" type="text" required autocomplete="country-name" />
-                </div>
-                <div class="app-field">
-                  <label for="source">How did you hear about this position?</label>
-                  <select id="source" name="source" required>
-                    <option value="">Select…</option>
-                    <option>NPC website</option>
-                    <option>Referral</option>
-                    <option>LinkedIn</option>
-                    <option>Other</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="app-actions">
-                <button type="button" class="btn btn-primary" data-next>Continue</button>
-              </div>
-            </section>
-
-            <!-- STEP 2: Eligibility -->
-            <section class="app-step" data-step="2" hidden>
-              <h2>Work Authorization & Eligibility</h2>
-
-              <div class="app-grid two">
-                <div class="app-field">
-                  <label for="authorized">Are you legally authorized to work in the country of employment?</label>
-                  <select id="authorized" name="authorized" required>
-                    <option value="">Select…</option>
-                    <option>Yes</option>
-                    <option>No</option>
-                  </select>
-                </div>
-                <div class="app-field">
-                  <label for="sponsorship">Will you now or in the future require employer sponsorship?</label>
-                  <select id="sponsorship" name="sponsorship" required>
-                    <option value="">Select…</option>
-                    <option>Yes</option>
-                    <option>No</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="app-grid two">
-                <div class="app-field">
-                  <label for="age18">Are you at least 18 years of age?</label>
-                  <select id="age18" name="age18" required>
-                    <option value="">Select…</option>
-                    <option>Yes</option>
-                    <option>No</option>
-                  </select>
-                </div>
-                <div class="app-field">
-                  <label for="accommodation">Are you able to meet the essential requirements of the position with or without accommodation?</label>
-                  <select id="accommodation" name="accommodation" required>
-                    <option value="">Select…</option>
-                    <option>Yes</option>
-                    <option>No</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="app-actions">
-                <button type="button" class="btn btn-outline" data-prev>Back</button>
-                <button type="button" class="btn btn-primary" data-next>Continue</button>
-              </div>
-            </section>
-
-            <!-- STEP 3: Education (simple / single entry; can expand later) -->
-            <section class="app-step" data-step="3" hidden>
-              <h2>Education</h2>
-              <p style="color:#4b5563;margin-top:.25rem;">Add your highest completed level. (You can expand to multiple entries later if you want.)</p>
-
-              <div class="app-grid two">
-                <div class="app-field">
-                  <label for="eduLevel">Highest level completed</label>
-                  <select id="eduLevel" name="eduLevel" required>
-                    <option value="">Select…</option>
-                    <option>High school</option>
-                    <option>Associate</option>
-                    <option>Bachelor’s</option>
-                    <option>Master’s</option>
-                    <option>Doctorate</option>
-                    <option>Other</option>
-                  </select>
-                </div>
-                <div class="app-field">
-                  <label for="institution">Institution name</label>
-                  <input id="institution" name="institution" type="text" required />
-                </div>
-              </div>
-
-              <div class="app-grid two">
-                <div class="app-field">
-                  <label for="fieldOfStudy">Field of study / major</label>
-                  <input id="fieldOfStudy" name="fieldOfStudy" type="text" required />
-                </div>
-                <div class="app-field">
-                  <label for="graduationDate">Graduation date <span class="app-hint" style="display:inline;color:#6b7280;font-weight:400;">(optional)</span></label>
-                  <input id="graduationDate" name="graduationDate" type="date" />
-                </div>
-              </div>
-
-              <div class="app-actions">
-                <button type="button" class="btn btn-outline" data-prev>Back</button>
-                <button type="button" class="btn btn-primary" data-next>Continue</button>
-              </div>
-            </section>
-
-            <!-- STEP 4: Employment History (CAP: last 3 roles) -->
-            <section class="app-step" data-step="4" hidden>
-              <div class="repeatable-header">
-                <div>
-                  <h2>Employment History</h2>
-                  <p>Enter up to <strong>3</strong> most recent roles.</p>
-                </div>
-                <div>
-                  <button type="button" class="btn btn-outline" id="addRoleBtn">Add role</button>
-                  <div class="app-hint" id="roleCapHint">0 / 3 roles added</div>
-                </div>
-              </div>
-
-              <div class="repeatable-list" id="rolesList"></div>
-
-              <template id="roleTemplate">
-                <div class="repeat-card" data-role-card>
-                  <div class="repeat-card__top">
-                    <div>
-                      <p class="repeat-card__title">Role <span data-role-number>1</span></p>
-                      <p class="repeat-card__meta">Most recent first</p>
-                    </div>
-                    <button type="button" class="btn btn-outline" data-remove-role>Remove</button>
-                  </div>
-
+            <form id="jobAppForm" novalidate>
+              <form id="jobAppForm" action="/submit" method="POST" enctype="multipart/form-data" novalidate>
+                <!-- STEP 1: Personal -->
+                <section class="app-step" data-step="1">
+                  <h2>Personal Information</h2>
                   <div class="app-grid two">
                     <div class="app-field">
-                      <label>Employer name</label>
-                      <input type="text" name="role_employer[]" required />
+                      <label for="firstName">First name</label>
+                      <input id="firstName" name="firstName" type="text" required autocomplete="given-name" />
                     </div>
                     <div class="app-field">
-                      <label>Job title</label>
-                      <input type="text" name="role_title[]" required />
+                      <label for="lastName">Last name</label>
+                      <input id="lastName" name="lastName" type="text" required autocomplete="family-name" />
                     </div>
                   </div>
-
                   <div class="app-grid two">
                     <div class="app-field">
-                      <label>Employment type</label>
-                      <select name="role_type[]" required>
+                      <label for="preferredName">Preferred name <span class="app-hint" style="display:inline;color:#6b7280;font-weight:400;">(optional)</span>
+                      </label>
+                      <input id="preferredName" name="preferredName" type="text" />
+                    </div>
+                    <div class="app-field">
+                      <label for="email">Email</label>
+                      <input id="email" name="email" type="email" required autocomplete="email" />
+                    </div>
+                  </div>
+                  <div class="app-grid two">
+                    <div class="app-field">
+                      <label for="phone">Phone <span class="app-hint" style="display:inline;color:#6b7280;font-weight:400;">(optional)</span>
+                      </label>
+                      <input id="phone" name="phone" type="tel" autocomplete="tel" />
+                    </div>
+                    <div class="app-field">
+                      <label for="linkedin">LinkedIn <span class="app-hint" style="display:inline;color:#6b7280;font-weight:400;">(optional)</span>
+                      </label>
+                      <input id="linkedin" name="linkedin" type="url" placeholder="https://linkedin.com/in/..." />
+                    </div>
+                  </div>
+                  <div class="app-grid two">
+                    <div class="app-field">
+                      <label for="city">City</label>
+                      <input id="city" name="city" type="text" required autocomplete="address-level2" />
+                    </div>
+                    <div class="app-field">
+                      <label for="state">State / Province</label>
+                      <input id="state" name="state" type="text" required autocomplete="address-level1" />
+                    </div>
+                  </div>
+                  <div class="app-grid two">
+                    <div class="app-field">
+                      <label for="country">Country</label>
+                      <input id="country" name="country" type="text" required autocomplete="country-name" />
+                    </div>
+                    <div class="app-field">
+                      <label for="source">How did you hear about this position?</label>
+                      <select id="source" name="source" required>
                         <option value="">Select…</option>
-                        <option>Full-time</option>
-                        <option>Part-time</option>
-                        <option>Contract</option>
-                        <option>Internship</option>
+                        <option>NPC website</option>
+                        <option>Referral</option>
+                        <option>LinkedIn</option>
+                        <option>Other</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="app-actions">
+                    <button type="button" class="btn btn-primary" data-next>Continue</button>
+                  </div>
+                </section>
+                <!-- STEP 2: Eligibility -->
+                <section class="app-step" data-step="2" hidden>
+                  <h2>Work Authorization & Eligibility</h2>
+                  <div class="app-grid two">
+                    <div class="app-field">
+                      <label for="authorized">Are you legally authorized to work in the country of employment?</label>
+                      <select id="authorized" name="authorized" required>
+                        <option value="">Select…</option>
+                        <option>Yes</option>
+                        <option>No</option>
                       </select>
                     </div>
                     <div class="app-field">
-                      <label>Location (City / State / Country)</label>
-                      <input type="text" name="role_location[]" required />
+                      <label for="sponsorship">Will you now or in the future require employer sponsorship?</label>
+                      <select id="sponsorship" name="sponsorship" required>
+                        <option value="">Select…</option>
+                        <option>Yes</option>
+                        <option>No</option>
+                      </select>
                     </div>
                   </div>
-
                   <div class="app-grid two">
                     <div class="app-field">
-                      <label>Start date</label>
-                      <input type="date" name="role_start[]" required />
+                      <label for="age18">Are you at least 18 years of age?</label>
+                      <select id="age18" name="age18" required>
+                        <option value="">Select…</option>
+                        <option>Yes</option>
+                        <option>No</option>
+                      </select>
                     </div>
                     <div class="app-field">
-                      <label>End date</label>
-                      <input type="date" name="role_end[]" />
-                      <small class="app-hint">Leave blank if current role is checked below.</small>
+                      <label for="accommodation">Are you able to meet the essential requirements of the position with or without accommodation?</label>
+                      <select id="accommodation" name="accommodation" required>
+                        <option value="">Select…</option>
+                        <option>Yes</option>
+                        <option>No</option>
+                      </select>
                     </div>
                   </div>
-
+                  <div class="app-actions">
+                    <button type="button" class="btn btn-outline" data-prev>Back</button>
+                    <button type="button" class="btn btn-primary" data-next>Continue</button>
+                  </div>
+                </section>
+                <!-- STEP 3: Education (simple / single entry; can expand later) -->
+                <section class="app-step" data-step="3" hidden>
+                  <h2>Education</h2>
+                  <p style="color:#4b5563;margin-top:.25rem;">Add your highest completed level. (You can expand to multiple entries later if you want.)</p>
+                  <div class="app-grid two">
+                    <div class="app-field">
+                      <label for="eduLevel">Highest level completed</label>
+                      <select id="eduLevel" name="eduLevel" required>
+                        <option value="">Select…</option>
+                        <option>High school</option>
+                        <option>Associate</option>
+                        <option>Bachelor’s</option>
+                        <option>Master’s</option>
+                        <option>Doctorate</option>
+                        <option>Other</option>
+                      </select>
+                    </div>
+                    <div class="app-field">
+                      <label for="institution">Institution name</label>
+                      <input id="institution" name="institution" type="text" required />
+                    </div>
+                  </div>
+                  <div class="app-grid two">
+                    <div class="app-field">
+                      <label for="fieldOfStudy">Field of study / major</label>
+                      <input id="fieldOfStudy" name="fieldOfStudy" type="text" required />
+                    </div>
+                    <div class="app-field">
+                      <label for="graduationDate">Graduation date <span class="app-hint" style="display:inline;color:#6b7280;font-weight:400;">(optional)</span>
+                      </label>
+                      <input id="graduationDate" name="graduationDate" type="date" />
+                    </div>
+                  </div>
+                  <div class="app-actions">
+                    <button type="button" class="btn btn-outline" data-prev>Back</button>
+                    <button type="button" class="btn btn-primary" data-next>Continue</button>
+                  </div>
+                </section>
+                <!-- STEP 4: Employment History (CAP: last 3 roles) -->
+                <section class="app-step" data-step="4" hidden>
+                  <div class="repeatable-header">
+                    <div>
+                      <h2>Employment History</h2>
+                      <p>Enter up to <strong>3</strong> most recent roles. </p>
+                    </div>
+                    <div>
+                      <button type="button" class="btn btn-outline" id="addRoleBtn">Add role</button>
+                      <div class="app-hint" id="roleCapHint">0 / 3 roles added</div>
+                    </div>
+                  </div>
+                  <div class="repeatable-list" id="rolesList"></div>
+                  <template id="roleTemplate">
+                    <div class="repeat-card" data-role-card>
+                      <div class="repeat-card__top">
+                        <div>
+                          <p class="repeat-card__title">Role <span data-role-number>1</span>
+                          </p>
+                          <p class="repeat-card__meta">Most recent first</p>
+                        </div>
+                        <button type="button" class="btn btn-outline" data-remove-role>Remove</button>
+                      </div>
+                      <div class="app-grid two">
+                        <div class="app-field">
+                          <label>Employer name</label>
+                          <input type="text" name="role_employer[]" required />
+                        </div>
+                        <div class="app-field">
+                          <label>Job title</label>
+                          <input type="text" name="role_title[]" required />
+                        </div>
+                      </div>
+                      <div class="app-grid two">
+                        <div class="app-field">
+                          <label>Employment type</label>
+                          <select name="role_type[]" required>
+                            <option value="">Select…</option>
+                            <option>Full-time</option>
+                            <option>Part-time</option>
+                            <option>Contract</option>
+                            <option>Internship</option>
+                          </select>
+                        </div>
+                        <div class="app-field">
+                          <label>Location (City / State / Country)</label>
+                          <input type="text" name="role_location[]" required />
+                        </div>
+                      </div>
+                      <div class="app-grid two">
+                        <div class="app-field">
+                          <label>Start date</label>
+                          <input type="date" name="role_start[]" required />
+                        </div>
+                        <div class="app-field">
+                          <label>End date</label>
+                          <input type="date" name="role_end[]" />
+                          <small class="app-hint">Leave blank if current role is checked below.</small>
+                        </div>
+                      </div>
+                      <div class="app-field">
+                        <div class="checkline">
+                          <input type="checkbox" name="role_current[]" value="Yes" data-current-role />
+                          <label style="margin:0;font-weight:600;">This is my current position</label>
+                        </div>
+                      </div>
+                      <div class="app-field">
+                        <label>Key responsibilities</label>
+                        <textarea name="role_responsibilities[]" required></textarea>
+                      </div>
+                      <div class="app-field">
+                        <label>Reason for leaving <span class="app-hint" style="display:inline;color:#6b7280;font-weight:400;">(optional)</span>
+                        </label>
+                        <input type="text" name="role_reason[]" />
+                      </div>
+                    </div>
+                  </template>
+                  <div class="app-actions">
+                    <button type="button" class="btn btn-outline" data-prev>Back</button>
+                    <button type="button" class="btn btn-primary" data-next>Continue</button>
+                  </div>
+                </section>
+                <!-- STEP 5: Attachments + Consent -->
+                <section class="app-step" data-step="5" hidden>
+                  <h2>Attachments & Submit</h2>
+                  <div class="app-grid two">
+                    <div class="app-field">
+                      <label for="resume">Resume (required)</label>
+                      <input id="resume" name="resume" type="file" accept=".pdf,.doc,.docx" required />
+                      <small class="app-hint">Accepted formats: PDF, DOC, DOCX.</small>
+                    </div>
+                    <div class="app-field">
+                      <label for="coverLetter">Cover letter (optional)</label>
+                      <input id="coverLetter" name="coverLetter" type="file" accept=".pdf,.doc,.docx" />
+                    </div>
+                  </div>
                   <div class="app-field">
                     <div class="checkline">
-                      <input type="checkbox" name="role_current[]" value="Yes" data-current-role />
-                      <label style="margin:0;font-weight:600;">This is my current position</label>
+                      <input type="checkbox" id="certify" name="certify" required />
+                      <label for="certify" style="margin:0;font-weight:600;">I certify that the information provided is true and complete.</label>
                     </div>
                   </div>
-
                   <div class="app-field">
-                    <label>Key responsibilities</label>
-                    <textarea name="role_responsibilities[]" required></textarea>
+                    <div class="checkline">
+                      <input type="checkbox" id="consent" name="consent" required />
+                      <label for="consent" style="margin:0;font-weight:600;">I consent to the processing and storage of my application data.</label>
+                    </div>
                   </div>
-
-                  <div class="app-field">
-                    <label>Reason for leaving <span class="app-hint" style="display:inline;color:#6b7280;font-weight:400;">(optional)</span></label>
-                    <input type="text" name="role_reason[]" />
+                  <div class="app-actions">
+                    <button type="button" class="btn btn-outline" data-prev>Back</button>
+                    <button type="submit" class="btn btn-primary">Submit application</button>
                   </div>
-                </div>
-              </template>
-
-              <div class="app-actions">
-                <button type="button" class="btn btn-outline" data-prev>Back</button>
-                <button type="button" class="btn btn-primary" data-next>Continue</button>
-              </div>
-            </section>
-
-            <!-- STEP 5: Attachments + Consent -->
-            <section class="app-step" data-step="5" hidden>
-              <h2>Attachments & Submit</h2>
-
-              <div class="app-grid two">
-                <div class="app-field">
-                  <label for="resume">Resume (required)</label>
-                  <input id="resume" name="resume" type="file" accept=".pdf,.doc,.docx" required />
-                  <small class="app-hint">Accepted formats: PDF, DOC, DOCX.</small>
-                </div>
-                <div class="app-field">
-                  <label for="coverLetter">Cover letter (optional)</label>
-                  <input id="coverLetter" name="coverLetter" type="file" accept=".pdf,.doc,.docx" />
-                </div>
-              </div>
-
-              <div class="app-field">
-                <div class="checkline">
-                  <input type="checkbox" id="certify" name="certify" required />
-                  <label for="certify" style="margin:0;font-weight:600;">I certify that the information provided is true and complete.</label>
-                </div>
-              </div>
-
-              <div class="app-field">
-                <div class="checkline">
-                  <input type="checkbox" id="consent" name="consent" required />
-                  <label for="consent" style="margin:0;font-weight:600;">I consent to the processing and storage of my application data.</label>
-                </div>
-              </div>
-
-              <div class="app-actions">
-                <button type="button" class="btn btn-outline" data-prev>Back</button>
-                <button type="submit" class="btn btn-primary">Submit application</button>
-              </div>
-
-              <p id="submitStatus" class="app-status" role="status" aria-live="polite"></p>
-            </section>
-          </form>
-
-        </article>
-      </div>
-    </section>
-  </main>
-
-  <div id="site-footer"></div>
-
-  <!-- Your existing includes script (if you use it on the careers page) -->
-  <script src="/includes/includes.js" defer></script>
-
-  <script>
-    // ===== Wizard =====
-    const form = document.getElementById('jobAppForm');
-    const steps = [...document.querySelectorAll('.app-step')];
-    const stepNumEl = document.getElementById('stepNum');
-    const stepTotalEl = document.getElementById('stepTotal');
-    const stepLabelEl = document.getElementById('stepLabel');
-    const bar = document.getElementById('progressBar');
-    const statusEl = document.getElementById('submitStatus');
-
-    const stepLabels = {
-      1: "Personal",
-      2: "Eligibility",
-      3: "Education",
-      4: "Employment",
-      5: "Submit"
-    };
-
-    let step = 1;
-    stepTotalEl.textContent = String(steps.length);
-
-    function showStep(n) {
-      step = n;
-      steps.forEach(s => s.hidden = (Number(s.dataset.step) !== step));
-      stepNumEl.textContent = String(step);
-      stepLabelEl.textContent = stepLabels[step] || "";
-      const pct = Math.round((step / steps.length) * 100);
-      bar.style.width = pct + "%";
-      document.querySelector('.app-progress__track').setAttribute('aria-valuenow', String(pct));
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function stepIsValid(n) {
-      const section = steps.find(s => Number(s.dataset.step) === n);
-      const inputs = [...section.querySelectorAll('input, select, textarea')];
-
-      // If on employment step and no roles, force at least one.
-      if (n === 4 && getRoleCards().length === 0) {
-        addRole(); // add one automatically
-      }
-
-      for (const el of inputs) {
-        // If end date exists and "current" is checked, allow empty end date
-        if (el.name === "role_end[]") {
-          const card = el.closest('[data-role-card]');
-          const current = card.querySelector('[data-current-role]');
-          if (current && current.checked) continue; // skip validating end date
-        }
-
-        if (!el.checkValidity()) {
-          el.reportValidity();
-          return false;
-        }
-      }
-      return true;
-    }
-
-    document.addEventListener('click', (e) => {
-      const next = e.target.closest('[data-next]');
-      const prev = e.target.closest('[data-prev]');
-      if (next) {
-        if (stepIsValid(step)) showStep(Math.min(step + 1, steps.length));
-      }
-      if (prev) showStep(Math.max(step - 1, 1));
-    });
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      if (!stepIsValid(step)) return;
-
-      statusEl.textContent = "Submitting…";
-
-      // Build multipart FormData (supports file uploads)
-      const fd = new FormData(form);
-
-      // IMPORTANT:
-      // Point this to YOUR backend endpoint (Azure Function/API),
-      // which then writes to SharePoint via Graph securely.
-      try {
-        const res = await fetch('/api/apply', { method: 'POST', body: fd });
-        if (!res.ok) throw new Error('Submit failed');
-        statusEl.textContent = "Submitted successfully. Thank you!";
-        form.reset();
-        // Reset roles to a single blank role
-        clearRoles();
-        addRole();
-        showStep(1);
-      } catch (err) {
-        statusEl.textContent = "Sorry — submission failed. Please try again.";
-      }
-    });
-
-    // ===== Employment History (CAP 3) =====
-    const rolesList = document.getElementById('rolesList');
-    const roleTemplate = document.getElementById('roleTemplate');
-    const addRoleBtn = document.getElementById('addRoleBtn');
-    const roleCapHint = document.getElementById('roleCapHint');
-    const ROLE_CAP = 3;
-
-    function getRoleCards() {
-      return [...rolesList.querySelectorAll('[data-role-card]')];
-    }
-
-    function updateRoleUI() {
-      const cards = getRoleCards();
-      cards.forEach((card, idx) => {
-        card.querySelector('[data-role-number]').textContent = String(idx + 1);
-      });
-      roleCapHint.textContent = `${cards.length} / ${ROLE_CAP} roles added`;
-      addRoleBtn.disabled = cards.length >= ROLE_CAP;
-    }
-
-    function addRole() {
-      const cards = getRoleCards();
-      if (cards.length >= ROLE_CAP) return;
-
-      const node = roleTemplate.content.cloneNode(true);
-      rolesList.appendChild(node);
-
-      // Wire up "current position" behavior (disable end date)
-      const newCard = getRoleCards()[getRoleCards().length - 1];
-      const currentCheckbox = newCard.querySelector('[data-current-role]');
-      const endDate = newCard.querySelector('input[name="role_end[]"]');
-
-      currentCheckbox.addEventListener('change', () => {
-        if (currentCheckbox.checked) {
-          endDate.value = "";
-          endDate.disabled = true;
-        } else {
-          endDate.disabled = false;
-        }
-      });
-
-      updateRoleUI();
-    }
-
-    function removeRole(cardEl) {
-      cardEl.remove();
-      updateRoleUI();
-    }
-
-    function clearRoles() {
-      rolesList.innerHTML = "";
-      updateRoleUI();
-    }
-
-    addRoleBtn.addEventListener('click', () => addRole());
-
-    rolesList.addEventListener('click', (e) => {
-      const btn = e.target.closest('[data-remove-role]');
-      if (!btn) return;
-      const card = btn.closest('[data-role-card]');
-      if (!card) return;
-      removeRole(card);
-    });
-
-    // Start with 1 role by default (typical ATS behavior)
-    addRole();
-    showStep(1);
-  </script>
-</body>
+                  <p id="submitStatus" class="app-status" role="status" aria-live="polite"></p>
+                </section>
+              </form>
+          </article>
+        </div>
+      </section>
+    </main>
+    <div id="site-footer"></div>
+    <!-- Your existing includes script (if you use it on the careers page) -->
+    <script src="/includes/includes.js" defer></script>
+    <script>
+      // ===== Wizard ===== const form = document.getElementById('jobAppForm'); const steps = [...document.querySelectorAll('.app-step')]; const stepNumEl = document.getElementById('stepNum'); const stepTotalEl = document.getElementById('stepTotal'); const stepLabelEl = document.getElementById('stepLabel'); const bar = document.getElementById('progressBar'); const statusEl = document.getElementById('submitStatus'); const stepLabels = { 1: "Personal", 2: "Eligibility", 3: "Education", 4: "Employment", 5: "Submit" }; let step = 1; stepTotalEl.textContent = String(steps.length); function showStep(n) { step = n; steps.forEach(s => s.hidden = (Number(s.dataset.step) !== step)); stepNumEl.textContent = String(step); stepLabelEl.textContent = stepLabels[step] || ""; const pct = Math.round((step / steps.length) * 100); bar.style.width = pct + "%"; document.querySelector('.app-progress__track').setAttribute('aria-valuenow', String(pct)); window.scrollTo({ top: 0, behavior: 'smooth' }); } function stepIsValid(n) { const section = steps.find(s => Number(s.dataset.step) === n); const inputs = [...section.querySelectorAll('input, select, textarea')]; // If on employment step and no roles, force at least one. if (n === 4 && getRoleCards().length === 0) { addRole(); // add one automatically } for (const el of inputs) { // If end date exists and "current" is checked, allow empty end date if (el.name === "role_end[]") { const card = el.closest('[data-role-card]'); const current = card.querySelector('[data-current-role]'); if (current && current.checked) continue; // skip validating end date } if (!el.checkValidity()) { el.reportValidity(); return false; } } return true; } document.addEventListener('click', (e) => { const next = e.target.closest('[data-next]'); const prev = e.target.closest('[data-prev]'); if (next) { if (stepIsValid(step)) showStep(Math.min(step + 1, steps.length)); } if (prev) showStep(Math.max(step - 1, 1)); }); form.addEventListener('submit', async (e) => { e.preventDefault(); if (!stepIsValid(step)) return; statusEl.textContent = "Submitting…"; // Build multipart FormData (supports file uploads) const fd = new FormData(form); // IMPORTANT: // Point this to YOUR backend endpoint (Azure Function/API), // which then writes to SharePoint via Graph securely. try { const res = await fetch('/api/apply', { method: 'POST', body: fd }); if (!res.ok) throw new Error('Submit failed'); statusEl.textContent = "Submitted successfully. Thank you!"; form.reset(); // Reset roles to a single blank role clearRoles(); addRole(); showStep(1); } catch (err) { statusEl.textContent = "Sorry — submission failed. Please try again."; } }); // ===== Employment History (CAP 3) ===== const rolesList = document.getElementById('rolesList'); const roleTemplate = document.getElementById('roleTemplate'); const addRoleBtn = document.getElementById('addRoleBtn'); const roleCapHint = document.getElementById('roleCapHint'); const ROLE_CAP = 3; function getRoleCards() { return [...rolesList.querySelectorAll('[data-role-card]')]; } function updateRoleUI() { const cards = getRoleCards(); cards.forEach((card, idx) => { card.querySelector('[data-role-number]').textContent = String(idx + 1); }); roleCapHint.textContent = ${cards.length} / ${ROLE_CAP} roles added; addRoleBtn.disabled = cards.length >= ROLE_CAP; } function addRole() { const cards = getRoleCards(); if (cards.length >= ROLE_CAP) return; const node = roleTemplate.content.cloneNode(true); rolesList.appendChild(node); // Wire up "current position" behavior (disable end date) const newCard = getRoleCards()[getRoleCards().length - 1]; const currentCheckbox = newCard.querySelector('[data-current-role]'); const endDate = newCard.querySelector('input[name="role_end[]"]'); currentCheckbox.addEventListener('change', () => { if (currentCheckbox.checked) { endDate.value = ""; endDate.disabled = true; } else { endDate.disabled = false; } }); updateRoleUI(); } function removeRole(cardEl) { cardEl.remove(); updateRoleUI(); } function clearRoles() { rolesList.innerHTML = ""; updateRoleUI(); } addRoleBtn.addEventListener('click', () => addRole()); rolesList.addEventListener('click', (e) => { const btn = e.target.closest('[data-remove-role]'); if (!btn) return; const card = btn.closest('[data-role-card]'); if (!card) return; removeRole(card); }); // Start with 1 role by default (typical ATS behavior) addRole(); showStep(1); 
+    </script>
+  </body>
 </html>
